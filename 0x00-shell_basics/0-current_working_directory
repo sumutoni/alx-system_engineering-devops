@@ -1,4 +1,2 @@
 #!/bin/bash
-full=$(realpath 0x00-shell_basics)
-path=$(dirname $full)
-echo $path
+echo $PWD
