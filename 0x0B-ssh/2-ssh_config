@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Configure client to use specific private key and no password auth.
+Host 34.202.157.41
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
