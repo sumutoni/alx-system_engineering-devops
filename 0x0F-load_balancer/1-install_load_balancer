@@ -2,3 +2,10 @@
 # install and configure HAProxy
 sudo apt-get update
 sudo apt-get install -y haproxy=2.0.\*
+
+sudo sed -i "s@=0@=1@" /etc/default/haproxy                                                                                        
+                                                                                                                                   
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/config.backup                                                                                                                                                                                                           
+sudo sed -i "35 i /frontend http\n\t bind *:80\n\t mode http\n\t default_backend web\n backend\n\t balance roundrobin\n\t server 43
+534-web-01 54.157.157.152:80 check\n\t 43534-web-02 54.209.143.114:80 check\n/" /etc/haproxy/haproxy.cfg   
+sudo service haproxy start
