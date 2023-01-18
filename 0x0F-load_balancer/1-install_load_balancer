@@ -3,9 +3,17 @@
 sudo apt-get update
 sudo apt-get install -y haproxy=2.0.\*
 
-sudo sed -i "s@=0@=1@" /etc/default/haproxy                                                                                        
-                                                                                                                                   
-sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/config.backup                                                                                                                                                                                                           
-sudo sed -i "35 i /listen load_balancer\n\tbind *:80\n\tmode http\n\toption httpclose\n\toption forwardfor\n\tserver 43
-534-web-01 54.157.157.152:80 check\n\t43534-web-02 54.209.143.114:80 check\n/" /etc/haproxy/haproxy.cfg   
+echo "ENABLED=1" > /etc/default/haproxy
+
+# Listen to both servers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+echo "
+   listen load_balancer
+   bind *:80
+   mode http
+   balance roundrobin
+   option httpclose
+   option forwardfor
+   server 17272-web-01 44.200.83.158:80 check
+   server 17272-web-02 3.237.16.226:80 check
+" >> /etc/haproxy/haproxy.cfg
 sudo service haproxy start
