@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # install and configure HAProxy
-sudo apt-get update
-sudo apt-get install -y haproxy=2.0.\*
+sudo apt-get install --no-install-recommends software-properties-common                                                            
+sudo add-apt-repository ppa:vbernat/haproxy-2.4                                                                                    
+sudo apt-get install haproxy=2.4.\* 
 
 sudo sed -i "11 a\ ENABLED=1"  /etc/default/haproxy                                                                                
                                                                                                                                    
