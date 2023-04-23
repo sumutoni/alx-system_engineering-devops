@@ -2,7 +2,7 @@
 $str = "Host *\n
 	\t PasswordAuthentication no\n
 	\t IdentityFile ~/.ssh/school"
-file { '~/.ssh/config':
+file { '/root/.ssh/config':
   ensure  => 'absent',
   content => $str
 }
