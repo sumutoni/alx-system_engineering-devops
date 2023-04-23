@@ -1,8 +1,16 @@
 # configure ssh using puppet
-$str = "Host *\n
-	\t PasswordAuthentication no\n
-	\t IdentityFile ~/.ssh/school"
-file { '/root/.ssh/config':
-  ensure  => 'present',
-  content => $str
+file_line { 'specify host':
+  ensure => 'present',
+  path   => '/root/.ssh/config',
+  line   => 'Host *'
+}
+file_line { 'password auth':
+  ensure => 'present',
+  path   => '/root/.ssh/config',
+  line   => '\tPasswordAuthentication no'
+}
+file_line { 'private key file':
+  ensure => 'present',
+  path   => '/root/.ssh/config',
+  line   => '\tIdentityFile ~/.ssh/school'
 }
