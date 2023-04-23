@@ -1,18 +1,13 @@
 # configure ssh using puppet
 include stdlib
 
-file_line { 'specify host':
-  ensure => 'present',
-  path   => '/root/.ssh/config',
-  line   => 'Host *'
-}
 file_line { 'password auth':
   ensure => 'present',
-  path   => '/root/.ssh/config',
+  path   => '/etc/ssh/ssh_config',
   line   => '\tPasswordAuthentication no'
 }
 file_line { 'private key file':
   ensure => 'present',
-  path   => '/root/.ssh/config',
+  path   => '/etc/ssh/ssh_config',
   line   => '\tIdentityFile ~/.ssh/school'
 }
