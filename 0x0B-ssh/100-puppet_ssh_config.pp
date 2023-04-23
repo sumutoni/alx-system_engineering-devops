@@ -1,4 +1,6 @@
 # configure ssh using puppet
+include stdlib
+
 file_line { 'specify host':
   ensure => 'present',
   path   => '/root/.ssh/config',
