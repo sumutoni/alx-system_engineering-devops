@@ -9,4 +9,3 @@ new_string="error_page 404 /custom_404.html;\n     location = /custom_404.html {
 sudo sed -i '41,45d' /etc/nginx/sites-available/default
 sudo sed -i "41 i \      $new_string" /etc/nginx/sites-available/default
 sudo service nginx restart
-sudo service nginx restart
