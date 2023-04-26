@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#Configure web server to have custom web page
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo service nginx start
+sudo sed -i '26d' /etc/nginx/sites-available/default
+sudo sed -i '26 i \     rewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+new_string="error_page 404 /custom_404.html;\n     location = /custom_404.html {\n      root /var/www/html;\n     internal;\n     }"
+sudo sed -i '41,45d' /etc/nginx/sites-available/default
+sudo sed -i "41 i \      $new_string" /etc/nginx/sites-available/default
+sudo service nginx restart
+sudo service nginx restart
