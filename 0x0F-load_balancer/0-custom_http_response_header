@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# configure Nginx with custom HTTP header
+# disable shellcheck=SC2154
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo sed -i '26,27d' /etc/nginx/sites-available/default
+sudo echo "/<\/html>/a Hello World!" > /var/www/html/index.nginx-debian.html
+sudo sed -i '26 i \     rewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+new_string="error_page 404 /custom_404.html;\n location = /custom_404.html {\n root /usr/share/nginx/html;\n internal;\n}"
+to_match="#error_page 404 /404.html;"
+sudo sed -i "s@$to_match@$new_string@" /etc/nginx/sites-available/default
+sudo sed -i "/rewrite/a \	add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sudo service nginx start
+sudo service nginx restart
