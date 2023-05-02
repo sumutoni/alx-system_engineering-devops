@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# configure HA proxy on server
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.5
+sudo apt-get install haproxy=2.5.\*
+sudo sed -i "11 a\ ENABLED=1"  /etc/default/haproxy
+sudo sed -i '21,28d' /etc/haproxy/haproxy.cfg
+sudo sed -i "19 a\ \nlisten listener\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption forwardfor\n\toption httpclose\n\tserver 43534-web-01 100.26.169.213:80 check\n\tserver 43534-web-02 100.25.166.247:80 check" /etc/haproxy/haproxy.cfg
+sudo service haproxy start
