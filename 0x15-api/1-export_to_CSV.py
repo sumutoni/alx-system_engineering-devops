@@ -19,4 +19,6 @@ if __name__ == "__main__":
             break
     with open(argv[1] + ".csv", 'w') as f:
         for i in range(0, len(todo_list)):
-            f.write('"{}","{}","{}","{}"\n'.format(argv[1], name, todo_list[i]['completed'], todo_list[i]['title']))
+            f.write('"{}","{}","{}","{}"\n'.format(argv[1], name,
+                                                   todo_list[i]['completed'],
+                                                   todo_list[i]['title']))
