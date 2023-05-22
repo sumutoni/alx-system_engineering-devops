@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Using a REST API to get todo list of a user based on id"""
-from sys import argv
 import requests
+from sys import argv
 
 
 if __name__ == "__main__":
