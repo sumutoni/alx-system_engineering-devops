@@ -21,7 +21,7 @@ if __name__ == "__main__":
         new_list = []
         for i in range(0, len(todo_list)):
             todo_dict = {}
-            todo_dict ['username'] = name
+            todo_dict['username'] = name
             todo_dict['task'] = todo_list[i]['title']
             todo_dict['completed'] = todo_list[i]['completed']
             new_list.append(todo_dict)

@@ -23,7 +23,7 @@ if __name__ == "__main__":
         todo_dict = {}
         todo_dict['task'] = todo_list[i]['title']
         todo_dict['completed'] = todo_list[i]['completed']
-        todo_dict ['username'] = name
+        todo_dict['username'] = name
         new_list.append(todo_dict)
     user_dict = {argv[1]: new_list}
     with open(argv[1] + '.json', 'w') as f:
