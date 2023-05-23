@@ -22,6 +22,6 @@ if __name__ == "__main__":
         if u.json()[i]['id'] == int(argv[1]):
             name = u.json()[i]['name']
             break
-    print('Employee {} is done with tasks ({:d}/20):'.format(name, completed))
+    print('Employee {} is done with tasks ({:d}/{:d}):'.format(name, completed, len(todo_list)))
     for i in range(0, len(completed_list)):
         print('\t {}'.format(completed_list[i]))
