@@ -6,7 +6,6 @@ import requests
 
 
 if __name__ == "__main__":
-    r = requests.get('https://jsonplaceholder.typicode.com/todos')
     u = requests.get('https://jsonplaceholder.typicode.com/users')
     todo_list = []
     name = ''
@@ -15,9 +14,9 @@ if __name__ == "__main__":
     for i in range(0, len(u.json())):
         name = u.json()[i]['username']
         user_id = u.json()[i]['id']
-        for i in range(0, len(r.json())):
-            if r.json()[i]['userId'] == user_id:
-                todo_list.append(r.json()[i])
+        todo_list = requests.get(
+                    'https://jsonplaceholder.typicode.com/todos?userId='
+                    + str(user_id)).json()
         new_list = []
         for i in range(0, len(todo_list)):
             todo_dict = {}
