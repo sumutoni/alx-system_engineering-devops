@@ -12,8 +12,11 @@ def top_ten(subreddit):
     h.update(headers)
     r = requests.get(url, headers=h, allow_redirects=False).json()
     if not r:
-        return None
+        print(None)
     else:
         posts = r.get('data', {}).get('children', [])
-        for i in range(0, 10):
-            print(posts[i]['data']['title'])
+        if len(posts) != 0:
+            for i in range(0, 10):
+                print(posts[i]['data']['title'])
+        else:
+            print(None)
