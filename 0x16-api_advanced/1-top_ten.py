@@ -11,9 +11,9 @@ def top_ten(subreddit):
     headers = {'User-Agent': "Ubuntu"}
     h.update(headers)
     r = requests.get(url, headers=h, allow_redirects=False).json()
-    posts = r.get('data', {}).get('children', [])
-    if not posts:
+    if not r:
         return None
     else:
+        posts = r.get('data', {}).get('children', [])
         for i in range(0, 10):
             print(posts[i]['data']['title'])
