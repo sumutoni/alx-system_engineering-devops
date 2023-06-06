@@ -15,5 +15,5 @@ def top_ten(subreddit):
     if not posts:
         return None
     else:
-        for post in posts:
-            print(post['data']['title'])
+        for i in range(0, 10):
+            print(posts[i]['data']['title'])
