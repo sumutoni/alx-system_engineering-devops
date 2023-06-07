@@ -13,13 +13,16 @@ def recurse(subreddit, hot_list=[], after=None):
     h = requests.utils.default_headers()
     headers = {'User-Agent': "Ubuntu"}
     h.update(headers)
-    r = requests.get(url, headers=h, allow_redirects=False).json()
-    if not r:
+    r = requests.get(url, headers=h, allow_redirects=False)
+    if r.status_code != 200:
         return None
-    posts = r.get('data', {}).get('children', [])
+    data = r.json().get('data')
+    if not data:
+        return hot_list
+    posts = data.get('children', [])
     for post in posts:
         hot_list.append(post['data']['title'])
-    after = r.get('data').get('after')
-    if not after:
+    after = data.get('after')
+    if after is None:
         return hot_list
     return recurse(subreddit, hot_list, after)
