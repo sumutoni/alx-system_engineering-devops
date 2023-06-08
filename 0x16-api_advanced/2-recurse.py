@@ -6,7 +6,7 @@ import requests
 
 def recurse(subreddit, hot_list=[], after=None):
     """return top 10 posts of subreddit"""
-    url = "https://www.reddit.com/r/{}/hot.json?\
+    url = "https://www.reddit.com/r/{}/hot.json?limit=100&\
            after={}".format(subreddit, after)
     h = requests.utils.default_headers()
     headers = {'User-Agent': "Ubuntu"}
