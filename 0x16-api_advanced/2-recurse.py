@@ -11,7 +11,7 @@ def recurse(subreddit, hot_list=[], after=None):
     h = requests.utils.default_headers()
     headers = {'User-Agent': "Ubuntu"}
     h.update(headers)
-    r = requests.get(url, headers=h, allow_redirects=False)
+    r = requests.get(url, headers=h)
     if r.status_code != 200:
         return None
     data = r.json().get('data')
