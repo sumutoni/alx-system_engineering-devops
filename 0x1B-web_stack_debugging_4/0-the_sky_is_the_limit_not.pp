@@ -1,3 +1,10 @@
-exec {'change limit from 15 to 15000 in /etc/default/nginx':
-  command => '/bin/sed -i "s@ULIMIT=\"-n 15\"@ULIMIT=\"-n 5000\"@" /etc/default/nginx && /etc/init.d/nginx restart',
+exec {'replace':
+  provider => shell,
+  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
+  before   => Exec['restart'],
+}
+
+exec {'restart':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
